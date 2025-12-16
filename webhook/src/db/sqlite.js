@@ -3,6 +3,9 @@ import path from "path";
 import Database from "better-sqlite3";
 
 export function openDbAndMigrate(env) {
+  if (!env || typeof env.SQLITE_PATH !== 'string' || env.SQLITE_PATH.trim() === '') {
+    throw new Error('Invalid SQLITE_PATH in environment');
+  }
   fs.mkdirSync(path.dirname(env.SQLITE_PATH), { recursive: true });
 
   const db = new Database(env.SQLITE_PATH);

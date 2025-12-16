@@ -20,6 +20,12 @@ export function loadEnv() {
     MAX_ATTEMPTS: Number(process.env.MAX_ATTEMPTS || 5),
 
     STUCK_MS: Number(process.env.STUCK_MS || 10 * 60 * 1000),
-    STUCK_CHECK_MS: Number(process.env.STUCK_CHECK_MS || 5 * 60 * 1000)
+    STUCK_CHECK_MS: Number(process.env.STUCK_CHECK_MS || 5 * 60 * 1000),
+
+    FCLI_SSC_URL: process.env.FCLI_SSC_URL || "http://localhost:8080/ssc",
+    FCLI_USER: process.env.FCLI_USER || "admin",
+    FCLI_PASS: process.env.FCLI_PASS || "",
+    FCLI_INSECURE: (process.env.FCLI_INSECURE || "true").toLowerCase() === "true",
+    FCLI_SESSION: process.env.FCLI_SESSION || "default"
   };
 }

@@ -26,7 +26,7 @@ export function normalizeCounts(fcliJsonArray) {
 
 export function pickAlmSeverity(rows) {
   const get = (sev) => rows.find((r) => r.severity === sev)?.totalCount ?? 0;
-  if (get("Critical") > 0) return "3-High";
+  if (get("Critical") > 0) return "4-Very High";
   if (get("High") > 0) return "3-High";
   if (get("Medium") > 0) return "2-Medium";
   return "1-Low";

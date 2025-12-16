@@ -14,7 +14,7 @@ function buildAlmDefectsUrl(almBase, domain, project) {
 
 export function createJobProcessor(deps) {
   const { env, logger } = deps;
-  const fcli = createFcliClient(env);
+  const fcli = createFcliClient(env, logger);
   const alm = createAlmClient(env);
 
   return {

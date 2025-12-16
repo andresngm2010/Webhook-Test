@@ -1,9 +1,26 @@
+import sanitizeHtml from "sanitize-html";
+
+const ALLOWED_TAGS = [
+  "b", "br", "i", "u",
+  "p", "ul", "ol", "li",
+  "table", "thead", "tbody", "tr", "th", "td",
+  "a"
+];
+
+const ALLOWED_ATTR = {
+  a: ["href", "title", "target"],
+  th: ["align"],
+  td: ["align"],
+  table: ["border", "cellpadding", "cellspacing", "style"]
+};
+
 export function escHtml(s) {
-  return String(s ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+  return sanitizeHtml(String(s ?? ""), {
+    allowedTags: ALLOWED_TAGS,
+    allowedAttributes: ALLOWED_ATTR,
+    allowedSchemes: ["http", "https"],
+    disallowedTagsMode: "discard"
+  });
 }
 
 export function buildReportUrlFromWebhookSscUrl(sscUrlBase, projectVersionId) {
